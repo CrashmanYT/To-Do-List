@@ -11,6 +11,14 @@
     background: linear-gradient(130deg, #153677, #4e085f);
     padding: 10px;
 }
+@keyframes backgroundDrop {
+    from {
+        transform: translateY(-10px); /* Mulai sedikit di atas */
+    }
+    to {
+        transform: translateY(0); /* Kembali ke posisi normal */
+    }
+}
 
 .todo-app {
     width: 100%;
@@ -19,6 +27,8 @@
     margin: 100px auto 20px;
     padding: 40px 30px 70px;
     border-radius: 10px;
+    transition-duration: 0.2s;
+    animation: backgroundDrop 0.3s ease; /* Menambahkan animasi backgroundDrop */
 }
 
 .todo-app h2 {
@@ -78,6 +88,17 @@ button:hover {
 
 }
 
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px); /* Menggeser elemen sedikit ke atas */
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0); /* Kembali ke posisi normal */
+    }
+}
+
 ul li {
     list-style: none;
     font-size: 17px;
@@ -85,6 +106,9 @@ ul li {
     user-select: none;
     cursor: pointer;
     position: relative;
+    animation: fadeIn 0.3s ease;
+    transition-duration: 0.3s;
+
 }
 
 ul li::before {
@@ -98,14 +122,33 @@ ul li::before {
     background-position: center;
     top: 12px;
     left: 8px;
+    transition-duration: 0.3s;
+
+}
+ul li::after {
+    content: '';
+    position: absolute;
+    height: 2px; /* Tebal garis */
+    width: 0; /* Awalnya garis tidak terlihat */
+    background: #555; /* Warna garis */
+    bottom: 50%; /* Posisikan di tengah teks */
+    left: 0; /* Mulai dari kiri */
+    transform: translateY(50%); /* Sesuaikan posisi vertikal */
+    transition: width 0.3s ease; /* Animasi lebar */
+}
+
+ul li.checked::after {
+    width: 100%; /* Garis meluas ke seluruh teks */
 }
 
 ul li.checked {
     color: #555;
     text-decoration: line-through;
+    transition-duration: 0.3s;
 }
 
 ul li.checked::before {
+    transition-duration: 0.3s;
     background-image: url(images/checked.png);
 }
 
